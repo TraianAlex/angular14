@@ -7,6 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as alertify from 'alertifyjs';
 import { UserService } from '../Service/user.service';
 
 @Injectable({
@@ -22,11 +23,11 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.service.GetRole() == 'admin') {
+    if (this.service.GetRole() === 'admin') {
       return true;
     } else {
-      alert('you are not authorized to access');
-      this.route.navigate(['home']);
+      alertify.error('You are not authorized to access this resource');
+      this.route.navigate(['/']);
       return false;
     }
   }

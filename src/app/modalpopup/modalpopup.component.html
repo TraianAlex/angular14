@@ -2,13 +2,13 @@
 <form [formGroup]="updateform" (ngSubmit)="SaveUser()">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>User Id</mat-label>
-    <input matInput formControlName="userid" />
+    <input matInput formControlName="id" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Role</mat-label>
     <mat-select formControlName="role">
-      <mat-option *ngFor="let role of roledata" [value]="role.roleid">
-        {{ role.name }}
+      <mat-option *ngFor="let role of roledata" [value]="role.name">
+        {{ role.name | uppercase }}
       </mat-option>
     </mat-select>
   </mat-form-field>

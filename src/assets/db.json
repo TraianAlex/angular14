@@ -1,0 +1,62 @@
+{
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin"
+    },
+    {
+      "id": 2,
+      "name": "user"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Alex",
+      "password": "1111",
+      "email": "test@test.com",
+      "role": "admin",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "name": "Alex2",
+      "password": "1111",
+      "email": "test@test.com",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "name": "Alex3",
+      "password": "1111",
+      "email": "test@test.com",
+      "role": "user",
+      "isActive": true,
+      "id": 3
+    },
+    {
+      "name": "test1",
+      "password": "111111",
+      "email": "test1@test.com",
+      "role": "user",
+      "isActive": false,
+      "id": 7
+    },
+    {
+      "name": "test11",
+      "password": "111111",
+      "email": "test1@test.com",
+      "role": "user",
+      "isActive": true,
+      "id": 12
+    },
+    {
+      "name": "aaaa",
+      "password": "aaaa",
+      "email": "aaaa@aaaa",
+      "role": "user",
+      "isActive": false,
+      "id": 13
+    }
+  ]
+}

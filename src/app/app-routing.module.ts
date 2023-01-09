@@ -10,7 +10,7 @@ import { StatusComponent } from './status/status.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent, canActivate: [RoleGuard] },
   {

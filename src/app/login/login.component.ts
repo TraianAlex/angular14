@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/Material-Module';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../Service/user.service';
 import { Router } from '@angular/router';
+import * as alertify from 'alertifyjs';
+
+import { UserService } from '../Service/user.service';
+import { UserMasterService } from '../Service/user-master.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private service: UserService, private route: Router) {}
+  constructor(
+    private userService: UserService,
+    private route: Router,
+    private service: UserMasterService
+  ) {}
 
   ngOnInit(): void {
     localStorage.clear();
@@ -22,13 +29,22 @@ export class LoginComponent implements OnInit {
 
   ProdceedLogin(logindata: any) {
     if (logindata.valid) {
-      this.service.ProceedLogin(logindata.value).subscribe((item) => {
-        this.respdata = item;
-        if (this.respdata != null) {
-          localStorage.setItem('token', this.respdata.jwtToken);
-          this.route.navigate(['home']);
+      // this.userService.ProceedLogin(logindata.value).subscribe((item) => {
+      //   this.respdata = item;
+      //   if (this.respdata !== null) {
+      //     localStorage.setItem('token', this.respdata.jwtToken);
+      //     this.route.navigate(['/']);
+      //   } else {
+      //     alert('Login Failed');
+      //   }
+      // });
+      const { password } = logindata.form.value;
+      this.userService.ProceedLogin(logindata).subscribe((user) => {
+        if (user.length && user[0].password === password) {
+          localStorage.setItem('role', user[0].role);
+          this.route.navigate(['/']);
         } else {
-          alert('Login Failed');
+          alertify.error('Login Failed');
         }
       });
     }

@@ -16,6 +16,7 @@ import { UserComponent } from './user/user.component';
 import { MaterialModule } from 'src/Material-Module';
 import { TokenInterceptorService } from './Service/token-interceptor.service';
 import { ModalpopupComponent } from './modalpopup/modalpopup.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ModalpopupComponent } from './modalpopup/modalpopup.component';
     AddcontactComponent,
     UserComponent,
     ModalpopupComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

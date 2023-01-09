@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Buffer } from 'buffer';
+import { map, Observable } from 'rxjs';
+
+import { UserModel } from '../Model/UserModel';
 
 @Injectable({
   providedIn: 'root',
@@ -8,16 +11,21 @@ import { Buffer } from 'buffer';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  ProceedLogin(inputdata: any) {
-    return this.http.post(
-      'https://localhost:44308/User/Authenticate',
-      inputdata
-    );
+  ProceedLogin(inputdata: any): Observable<UserModel[]> {
+    // return this.http.post(
+    //   'https://localhost:44308/User/Authenticate',
+    //   inputdata
+    // );
+    const { username } = inputdata.form.value;
+    return this.http
+      .get<UserModel[]>('http://localhost:8080/users')
+      .pipe(map((users) => users.filter((user) => user.name === username)));
   }
 
   IsLoogedIn() {
     this.GetRole();
-    return localStorage.getItem('token') != null;
+    // return localStorage.getItem('token') !== null;
+    return localStorage.getItem('role') !== null;
   }
 
   GetToken() {
@@ -27,18 +35,21 @@ export class UserService {
   }
 
   Registeration(inputdata: any) {
-    return this.http.post('https://localhost:44308/User/Register', inputdata);
+    // return this.http.post('https://localhost:44308/User/Register', inputdata);
+    return this.http.post('http://localhost:8080/users', inputdata);
   }
 
   GetRole() {
-    var token = localStorage.getItem('token');
-    if (token != null) {
-      var extractdata = JSON.parse(
-        Buffer.from(token.split('.')[1], 'base64').toString()
-      );
-      return extractdata.role;
-    } else {
-      return '';
-    }
+    // var token = localStorage.getItem('token');
+    // if (token !== null) {
+    //   var extractdata = JSON.parse(
+    //     Buffer.from(token.split('.')[1], 'base64').toString()
+    //   );
+    //   return extractdata.role;
+    // } else {
+    //   return '';
+    // }
+    let role = localStorage.getItem('role');
+    return role !== '' ? role : '';
   }
 }

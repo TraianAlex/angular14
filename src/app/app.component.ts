@@ -9,18 +9,18 @@ import { UserService } from './Service/user.service';
 })
 export class AppComponent implements DoCheck {
   constructor(private route: Router, private service: UserService) {}
-  title = 'angular14';
   isMenuVisible = true;
   isadmin = false;
+
   ngDoCheck(): void {
     const currentroute = this.route.url;
-    if (currentroute == '/login' || currentroute == '/access/register') {
+    if (currentroute === '/login' || currentroute === '/access/register') {
       this.isMenuVisible = false;
     } else {
       this.isMenuVisible = true;
     }
 
-    if (this.service.GetRole() == 'admin') {
+    if (this.service.GetRole() === 'admin') {
       this.isadmin = true;
     } else {
       this.isadmin = false;

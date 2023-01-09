@@ -13,13 +13,14 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private service: UserService) {}
 
   ngOnInit(): void {}
-  respdata: any;
+  // respdata: any;
 
   RedirectLogin() {
     this.router.navigate(['login']);
   }
+
   reactiveform = new FormGroup({
-    userid: new FormControl('', Validators.required),
+    // id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     email: new FormControl(
@@ -27,19 +28,27 @@ export class RegisterComponent implements OnInit {
       Validators.compose([Validators.required, Validators.email])
     ),
   });
+
   SaveUser() {
     if (this.reactiveform.valid) {
-      this.service.Registeration(this.reactiveform.value).subscribe((item) => {
-        this.respdata = item;
-        if (this.respdata.result == 'pass') {
-          alertify.success(
-            'Registerted successfully please contact admin for activation'
-          );
-          this.RedirectLogin();
-        } else {
-          alertify.error('failed try again');
-        }
-      });
+      this.service
+        .Registeration({
+          ...this.reactiveform.value,
+          role: 'user',
+          isActive: false,
+        })
+        .subscribe((item) => {
+          // this.respdata = item;
+          if (item) {
+            // this.respdata.result === 'pass'
+            alertify.success(
+              'Registerted successfully please contact admin for activation'
+            );
+            this.RedirectLogin();
+          } else {
+            alertify.error('Failed try again');
+          }
+        });
     }
   }
 }

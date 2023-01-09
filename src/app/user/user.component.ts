@@ -36,15 +36,15 @@ export class UserComponent implements OnInit {
   constructor(private service: UserMasterService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.GetAllUser();
+    this.GetAllUsers();
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   UserDetail: any;
   dataSource: any;
 
-  GetAllUser() {
-    this.service.GetAllUser().subscribe((item) => {
+  GetAllUsers() {
+    this.service.GetAllUsers().subscribe((item) => {
       this.UserDetail = item;
       this.dataSource = new MatTableDataSource<UserModel>(this.UserDetail);
       this.dataSource.paginator = this.paginator;
@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'userid',
+    'id',
     'name',
     'email',
     'isActive',
@@ -61,27 +61,28 @@ export class UserComponent implements OnInit {
   ];
   //dataSource = ELEMENT_DATA;
 
-  FunctionUpdate(userid: any) {
+  FunctionUpdate(id: any) {
     let popup = this.dialog.open(ModalpopupComponent, {
       width: '400px',
       // height:'400px',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {
-        userid: userid,
+        id,
       },
     });
     popup.afterClosed().subscribe((item) => {
-      this.GetAllUser();
+      this.GetAllUsers();
     });
   }
-  FunctionDelete(userid: any) {
+
+  FunctionDelete(id: any) {
     alertify.confirm(
       'Remove User',
-      'do you want remove this user?',
+      'Do you want remove this user?',
       () => {
-        this.service.RemoveUser(userid).subscribe((item) => {
-          this.GetAllUser();
+        this.service.RemoveUser(id).subscribe((item) => {
+          this.GetAllUsers();
           alertify.success('Removed Successfully');
         });
       },
