@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
 
 import { UserService } from '../Service/user.service';
-import { UserMasterService } from '../Service/user-master.service';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +15,7 @@ import { UserMasterService } from '../Service/user-master.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    private route: Router,
-    private service: UserMasterService
-  ) {}
+  constructor(private userService: UserService, private route: Router) {}
 
   ngOnInit(): void {
     localStorage.clear();

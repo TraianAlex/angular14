@@ -17,13 +17,12 @@ export class ModalpopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.GetAllRole();
+    this.getAllRole();
     this.GetExistdata(this.data.id);
   }
 
   roledata: any;
   editdata: any;
-  // savedata: any;
 
   updateform = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -36,8 +35,7 @@ export class ModalpopupComponent implements OnInit {
       this.service
         .UpdateUser(this.updateform.getRawValue())
         .subscribe((item) => {
-          // this.savedata = item;
-          if (item) { // this.savedata.result === 'pass'
+          if (item) {
             alertify.success('Updated successfully.');
             this.ref.close();
           } else {
@@ -47,8 +45,8 @@ export class ModalpopupComponent implements OnInit {
     }
   }
 
-  GetAllRole() {
-    this.service.GetAllRoles().subscribe((item) => {
+  getAllRole() {
+    this.service.getAllRoles().subscribe((item) => {
       this.roledata = item;
     });
   }

@@ -8,7 +8,7 @@ import { UserModel } from '../Model/UserModel';
 })
 export class UserMasterService {
   constructor(private http: HttpClient) {}
-  // apiurl = 'https://localhost:44308/api/UserMaster';
+
   apiurl = 'http://localhost:8080/users';
 
   GetAllUsers(): Observable<UserModel[]> {
@@ -24,13 +24,10 @@ export class UserMasterService {
   }
 
   UpdateUser(inputdata: any) {
-    console.log('inputdata', inputdata);
-    // return this.http.post(this.apiurl + '/ActivateUser', inputdata);
-    return this.http.patch(this.apiurl + '/' + inputdata.id, inputdata);
+    return this.http.patch(`${this.apiurl}/inputdata.id`, inputdata);
   }
 
-  GetAllRoles() {
-    // return this.http.get('https://localhost:44308/User/GetAllRole');
+  getAllRoles() {
     return this.http.get('http://localhost:8080/roles');
   }
 }

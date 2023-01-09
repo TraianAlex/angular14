@@ -12,10 +12,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   ProceedLogin(inputdata: any): Observable<UserModel[]> {
-    // return this.http.post(
-    //   'https://localhost:44308/User/Authenticate',
-    //   inputdata
-    // );
     const { username } = inputdata.form.value;
     return this.http
       .get<UserModel[]>('http://localhost:8080/users')
@@ -24,7 +20,6 @@ export class UserService {
 
   IsLoogedIn() {
     this.GetRole();
-    // return localStorage.getItem('token') !== null;
     return localStorage.getItem('role') !== null;
   }
 
@@ -35,7 +30,6 @@ export class UserService {
   }
 
   Registeration(inputdata: any) {
-    // return this.http.post('https://localhost:44308/User/Register', inputdata);
     return this.http.post('http://localhost:8080/users', inputdata);
   }
 
