@@ -4,14 +4,13 @@ import { Observable } from 'rxjs';
 import { UserModel } from '../Model/UserModel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserMasterService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   apiurl = 'https://localhost:44308/api/UserMaster';
 
-  GetAllUser():Observable<UserModel[]> {
+  GetAllUser(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(this.apiurl);
   }
 
@@ -23,14 +22,11 @@ export class UserMasterService {
     return this.http.delete(this.apiurl + '/' + UserId);
   }
 
-
   UpdateUser(inputdata: any) {
     return this.http.post(this.apiurl + '/ActivateUser', inputdata);
   }
 
-  GetAllRoles(){
-    return this.http.get("https://localhost:44308/User/GetAllRole");
+  GetAllRoles() {
+    return this.http.get('https://localhost:44308/User/GetAllRole');
   }
-
-
 }

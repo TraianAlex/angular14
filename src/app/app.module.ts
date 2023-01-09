@@ -11,8 +11,8 @@ import { StatusComponent } from './status/status.component';
 import { AddcontactComponent } from './addcontact/addcontact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { UserComponent } from './user/user.component'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserComponent } from './user/user.component';
 import { MaterialModule } from 'src/Material-Module';
 import { TokenInterceptorService } from './Service/token-interceptor.service';
 import { ModalpopupComponent } from './modalpopup/modalpopup.component';
@@ -26,7 +26,7 @@ import { ModalpopupComponent } from './modalpopup/modalpopup.component';
     StatusComponent,
     AddcontactComponent,
     UserComponent,
-    ModalpopupComponent
+    ModalpopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,11 +35,16 @@ import { ModalpopupComponent } from './modalpopup/modalpopup.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     //AccessRoutingModule
-    
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

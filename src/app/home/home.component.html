@@ -1,16 +1,23 @@
-<h2 [ngStyle]="stylevalue">{{headername | uppercase}}</h2>
+<h2 [ngStyle]="stylevalue">{{ headername | uppercase }}</h2>
 
-<h2 *ngIf="salary>0" [ngClass]="classname" >My salary is {{salary | percent}}</h2>
-<br>
+<h2 *ngIf="salary > 0" [ngClass]="classname">
+  My salary is {{ salary | percent }}
+</h2>
+<br />
 
 <button (click)="Functionclick('click here')">Click Me</button>
-<br>
+<br />
 
-<input [value]="isdiabled" [disabled]="isdiabled" #txt (change)="Functionclick(txt.value)" >
-<br>
-<br>
-<input [(ngModel)]="headername" >
+<input
+  [value]="isdiabled"
+  [disabled]="isdiabled"
+  #txt
+  (change)="Functionclick(txt.value)"
+/>
+<br />
+<br />
+<input [(ngModel)]="headername" />
 
 <ul>
-    <li *ngFor="let item of colors">{{item}}</li>
+  <li *ngFor="let item of colors">{{ item }}</li>
 </ul>

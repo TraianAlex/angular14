@@ -10,24 +10,33 @@ import { StatusComponent } from './status/status.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent,canActivate:[AuthGuard] },
-  { path: "about", component: AboutComponent,canActivate:[AuthGuard]  },
-  { path: "user", component: UserComponent,canActivate:[RoleGuard]  },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [RoleGuard] },
   {
-    path: "contact",
+    path: 'contact',
     component: ContactComponent,
     children: [
-      {path:"add",component:AddcontactComponent},
-      {path:"edit/:id",component:AddcontactComponent}
-    ],canActivate:[AuthGuard] 
+      { path: 'add', component: AddcontactComponent },
+      { path: 'edit/:id', component: AddcontactComponent },
+    ],
+    canActivate: [AuthGuard],
   },
-  {path:"access",loadChildren:()=>import('./access/access.module').then(opt=>opt.AccessModule)},
-  {path:"login",loadComponent:()=>import('./login/login.component').then(opt=>opt.LoginComponent)},
-  {path:"**",component:StatusComponent}
+  {
+    path: 'access',
+    loadChildren: () =>
+      import('./access/access.module').then((opt) => opt.AccessModule),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then((opt) => opt.LoginComponent),
+  },
+  { path: '**', component: StatusComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

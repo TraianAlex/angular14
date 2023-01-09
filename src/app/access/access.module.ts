@@ -6,16 +6,13 @@ import { RegisterComponent } from './register/register.component';
 import { MaterialModule } from 'src/Material-Module';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    RegisterComponent
-  ],
+  declarations: [RegisterComponent],
   imports: [
     CommonModule,
     AccessRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class AccessModule { }
+export class AccessModule {}
