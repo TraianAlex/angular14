@@ -8,13 +8,6 @@ import { UserModel } from '../model/UserModel';
 import { UserMasterService } from '../services/user-master.service';
 import { ModalpopupComponent } from '../modal-popup/modalpopup.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -55,6 +48,7 @@ export class UserComponent implements OnInit {
         id,
       },
     });
+
     popup.afterClosed().subscribe((item) => {
       this.getAllUsers();
     });
@@ -70,7 +64,7 @@ export class UserComponent implements OnInit {
           alertify.success('Removed Successfully');
         });
       },
-      function () {}
+      () => {}
     );
   }
 }

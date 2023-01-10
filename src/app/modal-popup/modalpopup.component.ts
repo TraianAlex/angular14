@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as alertify from 'alertifyjs';
 
+import { Roles, UserModel } from '../model/UserModel';
 import { UserMasterService } from '../services/user-master.service';
 
 @Component({
@@ -11,8 +12,13 @@ import { UserMasterService } from '../services/user-master.service';
   styleUrls: ['./modalpopup.component.css'],
 })
 export class ModalpopupComponent implements OnInit {
-  roleData!: any;
-  editData!: any;
+  roleData!: Roles[];
+  editData!: UserModel;
+  updateform = new FormGroup({
+    id: new FormControl({ value: '', disabled: true }),
+    role: new FormControl('', Validators.required),
+    isActive: new FormControl(true),
+  });
 
   constructor(
     private service: UserMasterService,
@@ -21,15 +27,9 @@ export class ModalpopupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllRole();
-    this.getExistdata(this.data.id);
+    this.getAllRoles();
+    this.getUser(this.data.id);
   }
-
-  updateform = new FormGroup({
-    id: new FormControl({ value: '', disabled: true }),
-    role: new FormControl('', Validators.required),
-    isActive: new FormControl(true),
-  });
 
   saveUser() {
     if (this.updateform.valid) {
@@ -46,13 +46,13 @@ export class ModalpopupComponent implements OnInit {
     }
   }
 
-  getAllRole() {
+  getAllRoles() {
     this.service.getAllRoles().subscribe((item) => {
       this.roleData = item;
     });
   }
 
-  getExistdata(id: number) {
+  getUser(id: number) {
     this.service.getUserbyId(id).subscribe((item) => {
       this.editData = item;
       if (this.editData !== null) {

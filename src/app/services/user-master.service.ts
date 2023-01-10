@@ -21,7 +21,7 @@ export class UserMasterService {
   }
 
   getUserbyId(id: number) {
-    return this.http.get(`${this.usersApi}/${id}`);
+    return this.http.get<UserModel>(`${this.usersApi}/${id}`);
   }
 
   removeUser(id: number) {
@@ -36,7 +36,7 @@ export class UserMasterService {
     return this.http.patch(`${this.usersApi}/${inputdata.id}`, inputdata);
   }
 
-  getAllRoles(): Observable<Object> {
+  getAllRoles(): Observable<Roles[]> {
     return this.http.get<Roles[]>(`${this.config.api}/roles`);
   }
 }
