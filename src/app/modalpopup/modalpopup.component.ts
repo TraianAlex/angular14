@@ -13,7 +13,7 @@ import { UserMasterService } from '../service/user-master.service';
 export class ModalpopupComponent implements OnInit {
   constructor(
     private service: UserMasterService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: { id: number },
     private ref: MatDialogRef<ModalpopupComponent>
   ) {}
 
@@ -22,8 +22,8 @@ export class ModalpopupComponent implements OnInit {
     this.getExistdata(this.data.id);
   }
 
-  roledata: any;
-  editdata: any;
+  roleData!: any;
+  editData!: any;
 
   updateform = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -48,18 +48,18 @@ export class ModalpopupComponent implements OnInit {
 
   getAllRole() {
     this.service.getAllRoles().subscribe((item) => {
-      this.roledata = item;
+      this.roleData = item;
     });
   }
 
-  getExistdata(id: any) {
+  getExistdata(id: number) {
     this.service.getUserbyId(id).subscribe((item) => {
-      this.editdata = item;
-      if (this.editdata !== null) {
+      this.editData = item;
+      if (this.editData !== null) {
         this.updateform.setValue({
-          id: this.editdata.id,
-          role: this.editdata.role,
-          isActive: this.editdata.isActive,
+          id: this.editData.id,
+          role: this.editData.role,
+          isActive: this.editData.isActive,
         });
       }
     });

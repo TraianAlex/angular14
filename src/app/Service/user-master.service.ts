@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { UserModel } from '../model/UserModel';
+import { Roles, UserModel } from '../model/UserModel';
 import { AppConfig, APP_SERVICE_CONFIG } from './app-config.service';
 
 @Injectable({
@@ -20,19 +20,23 @@ export class UserMasterService {
     return this.http.get<UserModel[]>(this.usersApi);
   }
 
-  getUserbyId(id: any) {
-    return this.http.get(`${this.usersApi}/id`);
+  getUserbyId(id: number) {
+    return this.http.get(`${this.usersApi}/${id}`);
   }
 
-  removeUser(id: any) {
-    return this.http.delete(`${this.usersApi}/id`);
+  removeUser(id: number) {
+    return this.http.delete(`${this.usersApi}/${id}`);
   }
 
-  updateUser(inputdata: any) {
-    return this.http.patch(`${this.usersApi}/inputdata.id`, inputdata);
+  updateUser(inputdata: {
+    id: string | null;
+    role: string | null;
+    isActive: boolean | null;
+  }) {
+    return this.http.patch(`${this.usersApi}/${inputdata.id}`, inputdata);
   }
 
-  getAllRoles() {
-    return this.http.get(`${this.config.api}/roles`);
+  getAllRoles(): Observable<Object> {
+    return this.http.get<Roles[]>(`${this.config.api}/roles`);
   }
 }

@@ -20,9 +20,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     localStorage.clear();
   }
-  respdata: any;
 
-  prodceedLogin(logindata: any) {
+  prodceedLogin(logindata: {
+    valid: boolean | null;
+    form: { value: { password: string } };
+  }) {
     if (logindata.valid) {
       // this.userService.proceedLogin(logindata.value).subscribe((item) => {
       //   this.respdata = item;

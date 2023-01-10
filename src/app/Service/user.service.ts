@@ -22,22 +22,22 @@ export class UserService {
       .pipe(map((users) => users.filter((user) => user.name === username)));
   }
 
-  isLoogedIn() {
+  isLoogedIn(): boolean {
     this.getRole();
     return localStorage.getItem('role') !== null;
   }
 
-  getToken() {
-    return localStorage.getItem('token') != null
+  getToken(): string | null {
+    return localStorage.getItem('token') !== null
       ? localStorage.getItem('token')
       : '';
   }
 
-  registration(inputdata: any) {
+  registration(inputdata: Omit<UserModel, 'id'>) {
     return this.http.post(`${this.config.api}/users`, inputdata);
   }
 
-  getRole() {
+  getRole(): string | null {
     // var token = localStorage.getItem('token');
     // if (token !== null) {
     //   var extractdata = JSON.parse(
