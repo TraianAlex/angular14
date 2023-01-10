@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { StatusComponent } from './status/status.component';
 import { UserComponent } from './user/user.component';
 import { AboutComponent } from './about/about.component';
-import { AddcontactComponent } from './addcontact/addcontact.component';
+import { AddcontactComponent } from './add-contact/addcontact.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
