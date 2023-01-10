@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
 import { MaterialModule } from 'src/app/material.module';
@@ -21,10 +21,7 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
   }
 
-  prodceedLogin(logindata: {
-    valid: boolean | null;
-    form: { value: { password: string } };
-  }) {
+  prodceedLogin(logindata: NgForm) {
     if (logindata.valid) {
       // this.userService.proceedLogin(logindata.value).subscribe((item) => {
       //   this.respdata = item;

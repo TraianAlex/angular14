@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
     'Action',
   ];
 
-  functionUpdate(id: any) {
+  functionUpdate(id: number) {
     let popup = this.dialog.open(ModalpopupComponent, {
       width: '400px',
       // height:'400px',
@@ -63,7 +63,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-  functionDelete(id: any) {
+  functionDelete(id: number) {
     alertify.confirm(
       'Remove User',
       'Do you want remove this user?',

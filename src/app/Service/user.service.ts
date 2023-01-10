@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 import { Buffer } from 'buffer';
 import { map, Observable } from 'rxjs';
 
@@ -15,7 +16,7 @@ export class UserService {
     private http: HttpClient
   ) {}
 
-  proceedLogin(inputdata: any): Observable<UserModel[]> {
+  proceedLogin(inputdata: NgForm): Observable<UserModel[]> {
     const { username } = inputdata.form.value;
     return this.http
       .get<UserModel[]>(`${this.config.api}/users`)
