@@ -1,34 +1,38 @@
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { UserModel } from '../model/UserModel';
+import { AppConfig, APP_SERVICE_CONFIG } from './app-config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserMasterService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    private http: HttpClient
+  ) {}
 
-  apiurl = 'http://localhost:8080/users';
+  usersApi = `${this.config.api}/users`;
 
   getAllUsers(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(this.apiurl);
+    return this.http.get<UserModel[]>(this.usersApi);
   }
 
   getUserbyId(id: any) {
-    return this.http.get(this.apiurl + '/' + id);
+    return this.http.get(`${this.usersApi}/id`);
   }
 
   removeUser(id: any) {
-    return this.http.delete(this.apiurl + '/' + id);
+    return this.http.delete(`${this.usersApi}/id`);
   }
 
   updateUser(inputdata: any) {
-    return this.http.patch(`${this.apiurl}/inputdata.id`, inputdata);
+    return this.http.patch(`${this.usersApi}/inputdata.id`, inputdata);
   }
 
   getAllRoles() {
-    return this.http.get('http://localhost:8080/roles');
+    return this.http.get(`${this.config.api}/roles`);
   }
 }

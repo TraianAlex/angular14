@@ -1,20 +1,24 @@
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Buffer } from 'buffer';
 import { map, Observable } from 'rxjs';
 
+import { AppConfig, APP_SERVICE_CONFIG } from './../service/app-config.service';
 import { UserModel } from '../model/UserModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    private http: HttpClient
+  ) {}
 
   proceedLogin(inputdata: any): Observable<UserModel[]> {
     const { username } = inputdata.form.value;
     return this.http
-      .get<UserModel[]>('http://localhost:8080/users')
+      .get<UserModel[]>(`${this.config.api}/users`)
       .pipe(map((users) => users.filter((user) => user.name === username)));
   }
 
@@ -30,7 +34,7 @@ export class UserService {
   }
 
   registeration(inputdata: any) {
-    return this.http.post('http://localhost:8080/users', inputdata);
+    return this.http.post(`${this.config.api}/users`, inputdata);
   }
 
   getRole() {
