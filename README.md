@@ -14,7 +14,7 @@
 
 `docker start <container-hash>`
 
-- persistent how long the containeris running
+- persistent how long the container is running
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
