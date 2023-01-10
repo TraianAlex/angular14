@@ -31,7 +31,7 @@
       "password": "1111",
       "email": "test@test.com",
       "role": "user",
-      "isActive": false,
+      "isActive": true,
       "id": 3
     },
     {

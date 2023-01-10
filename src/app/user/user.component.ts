@@ -22,23 +22,7 @@ export interface PeriodicElement {
 })
 export class UserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  userDetail: any;
-  dataSource: any;
-
-  constructor(private service: UserMasterService, private dialog: MatDialog) {}
-
-  ngOnInit(): void {
-    this.getAllUsers();
-  }
-
-  getAllUsers() {
-    this.service.getAllUsers().subscribe((item) => {
-      this.userDetail = item;
-      this.dataSource = new MatTableDataSource<UserModel>(this.userDetail);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
+  dataSource!: MatTableDataSource<UserModel>;
   displayedColumns: string[] = [
     'id',
     'name',
@@ -48,7 +32,20 @@ export class UserComponent implements OnInit {
     'Action',
   ];
 
-  functionUpdate(id: number) {
+  constructor(private service: UserMasterService, private dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    this.service.getAllUsers().subscribe((users) => {
+      this.dataSource = new MatTableDataSource<UserModel>(users);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  updateUser(id: number) {
     let popup = this.dialog.open(ModalpopupComponent, {
       width: '400px',
       // height:'400px',
@@ -63,7 +60,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-  functionDelete(id: number) {
+  deleteUser(id: number) {
     alertify.confirm(
       'Remove User',
       'Do you want remove this user?',
