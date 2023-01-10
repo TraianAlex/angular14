@@ -11,14 +11,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private router: Router, private service: UserService) {}
-
-  ngOnInit(): void {}
-
-  redirectLogin() {
-    this.router.navigate(['login']);
-  }
-
   reactiveform = new FormGroup({
     name: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -27,6 +19,14 @@ export class RegisterComponent implements OnInit {
       Validators.compose([Validators.required, Validators.email])
     ),
   });
+
+  constructor(private router: Router, private service: UserService) {}
+
+  ngOnInit(): void {}
+
+  redirectLogin() {
+    this.router.navigate(['login']);
+  }
 
   saveUser() {
     if (this.reactiveform.valid) {

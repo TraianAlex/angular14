@@ -1,5 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { UserService } from './services/user.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements DoCheck {
-  constructor(private route: Router, private service: UserService) {}
   isMenuVisible = true;
   isAdmin = false;
+
+  constructor(private route: Router, private service: UserService) {}
 
   ngDoCheck(): void {
     const currentroute = this.route.url;

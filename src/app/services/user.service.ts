@@ -28,11 +28,11 @@ export class UserService {
     return localStorage.getItem('role') !== null;
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token') !== null
-      ? localStorage.getItem('token')
-      : '';
-  }
+  // getToken(): string | null {
+  //   return localStorage.getItem('token') !== null
+  //     ? localStorage.getItem('token')
+  //     : '';
+  // }
 
   registration(inputdata: Omit<UserModel, 'id'>) {
     return this.http.post(`${this.config.api}/users`, inputdata);

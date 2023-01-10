@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
-import { MaterialModule } from 'src/app/material.module';
 
+import { MaterialModule } from 'src/app/material.module';
 import { UserService } from '../services/user.service';
 
 @Component({

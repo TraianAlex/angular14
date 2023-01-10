@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
   headername = 'Angular 14 ';
 
   salary = 10;
@@ -20,6 +19,8 @@ export class HomeComponent implements OnInit {
   stylevalue = { color: 'green', 'font-size': '30px' };
 
   colors = ['green', 'red', 'yellow', 'black', 'white'];
+
+  constructor() {}
 
   ngOnInit(): void {}
 

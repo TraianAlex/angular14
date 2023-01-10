@@ -11,6 +11,9 @@ import { UserMasterService } from '../services/user-master.service';
   styleUrls: ['./modalpopup.component.css'],
 })
 export class ModalpopupComponent implements OnInit {
+  roleData!: any;
+  editData!: any;
+
   constructor(
     private service: UserMasterService,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
@@ -21,9 +24,6 @@ export class ModalpopupComponent implements OnInit {
     this.getAllRole();
     this.getExistdata(this.data.id);
   }
-
-  roleData!: any;
-  editData!: any;
 
   updateform = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
