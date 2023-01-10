@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  Functionclick(name: string) {
+  functionclick(name: string) {
     alert(name);
   }
 }

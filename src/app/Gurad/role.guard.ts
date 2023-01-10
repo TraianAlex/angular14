@@ -24,7 +24,7 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.service.GetRole() === 'admin') {
+    if (this.service.getRole() === 'admin') {
       return true;
     } else {
       alertify.error('You are not authorized to access this resource');

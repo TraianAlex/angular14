@@ -11,29 +11,29 @@ import { UserModel } from '../Model/UserModel';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  ProceedLogin(inputdata: any): Observable<UserModel[]> {
+  proceedLogin(inputdata: any): Observable<UserModel[]> {
     const { username } = inputdata.form.value;
     return this.http
       .get<UserModel[]>('http://localhost:8080/users')
       .pipe(map((users) => users.filter((user) => user.name === username)));
   }
 
-  IsLoogedIn() {
-    this.GetRole();
+  isLoogedIn() {
+    this.getRole();
     return localStorage.getItem('role') !== null;
   }
 
-  GetToken() {
+  getToken() {
     return localStorage.getItem('token') != null
       ? localStorage.getItem('token')
       : '';
   }
 
-  Registeration(inputdata: any) {
+  registeration(inputdata: any) {
     return this.http.post('http://localhost:8080/users', inputdata);
   }
 
-  GetRole() {
+  getRole() {
     // var token = localStorage.getItem('token');
     // if (token !== null) {
     //   var extractdata = JSON.parse(

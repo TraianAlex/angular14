@@ -10,7 +10,7 @@ import { UserService } from './Service/user.service';
 export class AppComponent implements DoCheck {
   constructor(private route: Router, private service: UserService) {}
   isMenuVisible = true;
-  isadmin = false;
+  isAdmin = false;
 
   ngDoCheck(): void {
     const currentroute = this.route.url;
@@ -20,10 +20,10 @@ export class AppComponent implements DoCheck {
       this.isMenuVisible = true;
     }
 
-    if (this.service.GetRole() === 'admin') {
-      this.isadmin = true;
+    if (this.service.getRole() === 'admin') {
+      this.isAdmin = true;
     } else {
-      this.isadmin = false;
+      this.isAdmin = false;
     }
   }
 }

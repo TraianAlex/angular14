@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { UserModel } from '../Model/UserModel';
 
 @Injectable({
@@ -11,19 +12,19 @@ export class UserMasterService {
 
   apiurl = 'http://localhost:8080/users';
 
-  GetAllUsers(): Observable<UserModel[]> {
+  getAllUsers(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(this.apiurl);
   }
 
-  GetUserbyId(id: any) {
+  getUserbyId(id: any) {
     return this.http.get(this.apiurl + '/' + id);
   }
 
-  RemoveUser(id: any) {
+  removeUser(id: any) {
     return this.http.delete(this.apiurl + '/' + id);
   }
 
-  UpdateUser(inputdata: any) {
+  updateUser(inputdata: any) {
     return this.http.patch(`${this.apiurl}/inputdata.id`, inputdata);
   }
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from 'src/Material-Module';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
+import { MaterialModule } from 'src/Material-Module';
 
 import { UserService } from '../Service/user.service';
 
@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
   }
   respdata: any;
 
-  ProdceedLogin(logindata: any) {
+  prodceedLogin(logindata: any) {
     if (logindata.valid) {
-      // this.userService.ProceedLogin(logindata.value).subscribe((item) => {
+      // this.userService.proceedLogin(logindata.value).subscribe((item) => {
       //   this.respdata = item;
       //   if (this.respdata !== null) {
       //     localStorage.setItem('token', this.respdata.jwtToken);
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       //   }
       // });
       const { password } = logindata.form.value;
-      this.userService.ProceedLogin(logindata).subscribe((user) => {
+      this.userService.proceedLogin(logindata).subscribe((user) => {
         if (user.length && user[0].password === password) {
           localStorage.setItem('role', user[0].role);
           this.route.navigate(['/']);
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  RedirectRegister() {
+  redirectRegister() {
     this.route.navigate(['access/register']);
   }
 }

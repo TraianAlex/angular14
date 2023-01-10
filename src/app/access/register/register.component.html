@@ -4,7 +4,7 @@
     <form
       class="example-form"
       [formGroup]="reactiveform"
-      (ngSubmit)="SaveUser()"
+      (ngSubmit)="saveUser()"
     >
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Username</mat-label>
@@ -32,7 +32,7 @@
           mat-raised-button
           style="margin: 5px"
           color="accent"
-          (click)="RedirectLogin()"
+          (click)="redirectLogin()"
           >Close</a
         >
       </div>

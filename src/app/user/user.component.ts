@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import * as alertify from 'alertifyjs';
+
 import { UserModel } from '../Model/UserModel';
 import { UserMasterService } from '../Service/user-master.service';
-import * as alertify from 'alertifyjs';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
 export interface PeriodicElement {
@@ -23,17 +24,17 @@ export class UserComponent implements OnInit {
   constructor(private service: UserMasterService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.GetAllUsers();
+    this.getAllUsers();
   }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  UserDetail: any;
+  userDetail: any;
   dataSource: any;
 
-  GetAllUsers() {
-    this.service.GetAllUsers().subscribe((item) => {
-      this.UserDetail = item;
-      this.dataSource = new MatTableDataSource<UserModel>(this.UserDetail);
+  getAllUsers() {
+    this.service.getAllUsers().subscribe((item) => {
+      this.userDetail = item;
+      this.dataSource = new MatTableDataSource<UserModel>(this.userDetail);
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -47,7 +48,7 @@ export class UserComponent implements OnInit {
     'Action',
   ];
 
-  FunctionUpdate(id: any) {
+  functionUpdate(id: any) {
     let popup = this.dialog.open(ModalpopupComponent, {
       width: '400px',
       // height:'400px',
@@ -58,17 +59,17 @@ export class UserComponent implements OnInit {
       },
     });
     popup.afterClosed().subscribe((item) => {
-      this.GetAllUsers();
+      this.getAllUsers();
     });
   }
 
-  FunctionDelete(id: any) {
+  functionDelete(id: any) {
     alertify.confirm(
       'Remove User',
       'Do you want remove this user?',
       () => {
-        this.service.RemoveUser(id).subscribe((item) => {
-          this.GetAllUsers();
+        this.service.removeUser(id).subscribe((item) => {
+          this.getAllUsers();
           alertify.success('Removed Successfully');
         });
       },

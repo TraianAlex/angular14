@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserMasterService } from '../Service/user-master.service';
 import * as alertify from 'alertifyjs';
+
+import { UserMasterService } from '../Service/user-master.service';
 
 @Component({
   selector: 'app-modalpopup',
@@ -18,7 +19,7 @@ export class ModalpopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllRole();
-    this.GetExistdata(this.data.id);
+    this.getExistdata(this.data.id);
   }
 
   roledata: any;
@@ -30,10 +31,10 @@ export class ModalpopupComponent implements OnInit {
     isActive: new FormControl(true),
   });
 
-  SaveUser() {
+  saveUser() {
     if (this.updateform.valid) {
       this.service
-        .UpdateUser(this.updateform.getRawValue())
+        .updateUser(this.updateform.getRawValue())
         .subscribe((item) => {
           if (item) {
             alertify.success('Updated successfully.');
@@ -51,8 +52,8 @@ export class ModalpopupComponent implements OnInit {
     });
   }
 
-  GetExistdata(id: any) {
-    this.service.GetUserbyId(id).subscribe((item) => {
+  getExistdata(id: any) {
+    this.service.getUserbyId(id).subscribe((item) => {
       this.editdata = item;
       if (this.editdata !== null) {
         this.updateform.setValue({

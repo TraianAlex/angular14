@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { AddcontactComponent } from './addcontact/addcontact.component';
-import { ContactComponent } from './contact/contact.component';
+
 import { AuthGuard } from './Guard/auth.guard';
 import { RoleGuard } from './Gurad/role.guard';
+
 import { HomeComponent } from './home/home.component';
 import { StatusComponent } from './status/status.component';
 import { UserComponent } from './user/user.component';
+import { AboutComponent } from './about/about.component';
+import { AddcontactComponent } from './addcontact/addcontact.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

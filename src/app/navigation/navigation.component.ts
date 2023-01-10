@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  @Input() isadmin: boolean| undefined;
+  @Input() isAdmin: boolean| undefined;
   @Input() isMenuVisible: boolean = false;
 
   constructor() { }
