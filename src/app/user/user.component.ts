@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import * as alertify from 'alertifyjs';
 
-import { UserModel } from '../Model/UserModel';
-import { UserMasterService } from '../Service/user-master.service';
+import { UserModel } from '../model/UserModel';
+import { UserMasterService } from '../service/user-master.service';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
 export interface PeriodicElement {

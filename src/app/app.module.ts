@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { MaterialModule } from 'src/Material-Module';
-import { TokenInterceptorService } from './Service/token-interceptor.service';
+import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ModalpopupComponent } from './modalpopup/modalpopup.component';
 import { NavigationComponent } from './navigation/navigation.component';
 

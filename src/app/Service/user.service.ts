@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Buffer } from 'buffer';
 import { map, Observable } from 'rxjs';
 
-import { UserModel } from '../Model/UserModel';
+import { UserModel } from '../model/UserModel';
 
 @Injectable({
   providedIn: 'root',

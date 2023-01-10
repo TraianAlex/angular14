@@ -1,6 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './Service/user.service';
+import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-root',

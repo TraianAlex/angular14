@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as alertify from 'alertifyjs';
 
-import { UserMasterService } from '../Service/user-master.service';
+import { UserMasterService } from '../service/user-master.service';
 
 @Component({
   selector: 'app-modalpopup',

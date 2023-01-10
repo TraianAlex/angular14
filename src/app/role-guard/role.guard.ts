@@ -9,7 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import * as alertify from 'alertifyjs';
 
-import { UserService } from '../Service/user.service';
+import { UserService } from '../service/user.service';
 
 @Injectable({
   providedIn: 'root',

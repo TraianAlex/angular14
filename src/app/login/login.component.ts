@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
 import { MaterialModule } from 'src/Material-Module';
 
-import { UserService } from '../Service/user.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-login',
