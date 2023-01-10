@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from 'src/Material-Module';
+import { MaterialModule } from 'src/app/material.module';
 
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './service/app-config.service';
 import { TokenInterceptorService } from './service/token-interceptor.service';

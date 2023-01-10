@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   saveUser() {
     if (this.reactiveform.valid) {
       this.service
-        .registeration({
+        .registration({
           ...this.reactiveform.value,
           role: 'user',
           isActive: false,

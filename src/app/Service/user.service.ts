@@ -33,7 +33,7 @@ export class UserService {
       : '';
   }
 
-  registeration(inputdata: any) {
+  registration(inputdata: any) {
     return this.http.post(`${this.config.api}/users`, inputdata);
   }
 

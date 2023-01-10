@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AccessRoutingModule } from './access-routing.module';
 import { RegisterComponent } from './register/register.component';
-import { MaterialModule } from 'src/Material-Module';
+import { MaterialModule } from 'src/app/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
