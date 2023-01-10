@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './guard/auth.guard';
-import { RoleGuard } from './role-guard/role.guard';
+import { RoleGuard } from './guard/role.guard';
 
 import { HomeComponent } from './home/home.component';
 import { StatusComponent } from './status/status.component';
