@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
       },
     });
 
-    popup.afterClosed().subscribe((item) => {
+    popup.afterClosed().subscribe(() => {
       this.getAllUsers();
     });
   }
@@ -59,7 +59,7 @@ export class UserComponent implements OnInit {
       'Remove User',
       'Do you want remove this user?',
       () => {
-        this.service.removeUser(id).subscribe((item) => {
+        this.service.removeUser(id).subscribe(() => {
           this.getAllUsers();
           alertify.success('Removed Successfully');
         });

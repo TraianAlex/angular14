@@ -12,8 +12,7 @@ import { UserMasterService } from '../services/user-master.service';
   styleUrls: ['./modalpopup.component.css'],
 })
 export class ModalpopupComponent implements OnInit {
-  roleData!: Roles[];
-  editData!: UserModel;
+  roles!: Roles[];
   updateform = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
     role: new FormControl('', Validators.required),
@@ -35,8 +34,8 @@ export class ModalpopupComponent implements OnInit {
     if (this.updateform.valid) {
       this.service
         .updateUser(this.updateform.getRawValue())
-        .subscribe((item) => {
-          if (item) {
+        .subscribe((user) => {
+          if (user) {
             alertify.success('Updated successfully.');
             this.ref.close();
           } else {
@@ -47,19 +46,18 @@ export class ModalpopupComponent implements OnInit {
   }
 
   getAllRoles() {
-    this.service.getAllRoles().subscribe((item) => {
-      this.roleData = item;
+    this.service.getAllRoles().subscribe((roles) => {
+      this.roles = roles;
     });
   }
 
   getUser(id: number) {
-    this.service.getUserbyId(id).subscribe((item) => {
-      this.editData = item;
-      if (this.editData !== null) {
+    this.service.getUserbyId(id).subscribe((user) => {
+      if (user !== null) {
         this.updateform.setValue({
-          id: this.editData.id,
-          role: this.editData.role,
-          isActive: this.editData.isActive,
+          id: user.id,
+          role: user.role,
+          isActive: user.isActive,
         });
       }
     });
