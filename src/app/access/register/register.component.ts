@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
+import { Subscription } from 'rxjs';
 
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   reactiveform = new FormGroup({
     name: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
       Validators.compose([Validators.required, Validators.email])
     ),
   });
+  private saveUserSub!: Subscription;
 
   constructor(private router: Router, private service: UserService) {}
 
@@ -30,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
   saveUser() {
     if (this.reactiveform.valid) {
-      this.service
+      this.saveUserSub = this.service
         .registration({
           ...this.reactiveform.value,
           role: 'user',
@@ -47,5 +49,9 @@ export class RegisterComponent implements OnInit {
           }
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.saveUserSub?.unsubscribe();
   }
 }

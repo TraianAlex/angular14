@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import * as alertify from 'alertifyjs';
 
 import { MaterialModule } from 'src/app/material.module';
@@ -14,7 +15,9 @@ import { UserService } from '../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  private loginUserSub!: Subscription;
+
   constructor(private userService: UserService, private route: Router) {}
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
       //   }
       // });
       const { password } = logindata.form.value;
-      this.userService.proceedLogin(logindata).subscribe((user) => {
+      this.loginUserSub = this.userService.proceedLogin(logindata).subscribe((user) => {
         if (user.length && user[0].password === password) {
           localStorage.setItem('role', user[0].role);
           this.route.navigate(['/']);
@@ -46,5 +49,9 @@ export class LoginComponent implements OnInit {
 
   redirectRegister() {
     this.route.navigate(['access/register']);
+  }
+
+  ngOnDestroy(): void {
+    this.loginUserSub?.unsubscribe();
   }
 }

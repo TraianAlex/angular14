@@ -4,7 +4,10 @@ import { NgForm } from '@angular/forms';
 import { Buffer } from 'buffer';
 import { map, Observable } from 'rxjs';
 
-import { AppConfig, APP_SERVICE_CONFIG } from './../services/app-config.service';
+import {
+  AppConfig,
+  APP_SERVICE_CONFIG,
+} from './../services/app-config.service';
 import { UserModel } from '../model/UserModel';
 
 @Injectable({
@@ -34,8 +37,8 @@ export class UserService {
   //     : '';
   // }
 
-  registration(inputdata: Omit<UserModel, 'id'>) {
-    return this.http.post(`${this.config.api}/users`, inputdata);
+  registration(inputdata: Omit<UserModel, 'id'>): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.config.api}/users`, inputdata);
   }
 
   getRole(): string | null {

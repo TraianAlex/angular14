@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import * as alertify from 'alertifyjs';
 
 import { Roles, UserModel } from '../model/UserModel';
@@ -11,13 +12,16 @@ import { UserMasterService } from '../services/user-master.service';
   templateUrl: './modalpopup.component.html',
   styleUrls: ['./modalpopup.component.css'],
 })
-export class ModalpopupComponent implements OnInit {
+export class ModalpopupComponent implements OnInit, OnDestroy {
   roles!: Roles[];
   updateform = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
     role: new FormControl('', Validators.required),
     isActive: new FormControl(true),
   });
+  private saveUserSub!: Subscription;
+  private getRolesSub!: Subscription;
+  private getUserSub!: Subscription;
 
   constructor(
     private service: UserMasterService,
@@ -32,7 +36,7 @@ export class ModalpopupComponent implements OnInit {
 
   saveUser() {
     if (this.updateform.valid) {
-      this.service
+      this.saveUserSub = this.service
         .updateUser(this.updateform.getRawValue())
         .subscribe((user) => {
           if (user) {
@@ -46,13 +50,13 @@ export class ModalpopupComponent implements OnInit {
   }
 
   getAllRoles() {
-    this.service.getAllRoles().subscribe((roles) => {
+    this.getRolesSub = this.service.getAllRoles().subscribe((roles) => {
       this.roles = roles;
     });
   }
 
   getUser(id: number) {
-    this.service.getUserbyId(id).subscribe((user) => {
+    this.getUserSub = this.service.getUserbyId(id).subscribe((user) => {
       if (user !== null) {
         this.updateform.setValue({
           id: user.id,
@@ -61,5 +65,11 @@ export class ModalpopupComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.saveUserSub?.unsubscribe();
+    this.getRolesSub?.unsubscribe();
+    this.getUserSub?.unsubscribe();
   }
 }
