@@ -1,5 +1,5 @@
 # Angular14
-- This is a course project from a youtube video watched on youtube where I had to refactor a lot of code to follow few best practices also to create my backend to be able to replicate part of his backend.
+- This is a course project from a video watched on youtube where I had to refactor a lot of code to follow few best practices also to create my backend to be able to replicate part of his backend.
 
 # Rapid backend set up
 
