@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { inject, Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -9,8 +9,10 @@ import { AppConfig, APP_SERVICE_CONFIG } from './app-config.service';
   providedIn: 'root',
 })
 export class UserMasterService {
+  private config: AppConfig = inject(APP_SERVICE_CONFIG);
+
   constructor(
-    @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
+    // @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
     private http: HttpClient
   ) {}
 

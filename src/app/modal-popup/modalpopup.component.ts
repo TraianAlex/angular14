@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import * as alertify from 'alertifyjs';
 
-import { Roles, UserModel } from '../model/UserModel';
+import { Roles } from '../model/UserModel';
 import { UserMasterService } from '../services/user-master.service';
 
 @Component({
