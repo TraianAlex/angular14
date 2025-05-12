@@ -3,15 +3,14 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
+  standalone: false,
 })
 export class NavigationComponent implements OnInit {
-  @Input() isAdmin: boolean| undefined;
+  @Input() isAdmin: boolean | undefined;
   @Input() isMenuVisible: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
     </div>
   `,
   styleUrls: ['./contact.component.css'],
+  standalone: false,
 })
 export class ContactComponent implements OnInit {
   constructor() {}

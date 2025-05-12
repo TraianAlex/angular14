@@ -11,6 +11,7 @@ import { UserMasterService } from '../services/user-master.service';
   selector: 'app-modalpopup',
   templateUrl: './modalpopup.component.html',
   styleUrls: ['./modalpopup.component.css'],
+  standalone: false,
 })
 export class ModalpopupComponent implements OnInit, OnDestroy {
   roles!: Roles[];
@@ -26,7 +27,7 @@ export class ModalpopupComponent implements OnInit, OnDestroy {
   constructor(
     private service: UserMasterService,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
-    private ref: MatDialogRef<ModalpopupComponent>
+    private ref: MatDialogRef<ModalpopupComponent>,
   ) {}
 
   ngOnInit(): void {

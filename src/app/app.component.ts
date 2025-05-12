@@ -7,12 +7,16 @@ import { UserService } from './services/user.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  standalone: false,
 })
 export class AppComponent implements DoCheck {
   isMenuVisible = true;
   isAdmin = false;
 
-  constructor(private route: Router, private service: UserService) {}
+  constructor(
+    private route: Router,
+    private service: UserService,
+  ) {}
 
   ngDoCheck(): void {
     const currentroute = this.route.url;

@@ -13,6 +13,7 @@ import { ModalpopupComponent } from '../modal-popup/modalpopup.component';
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
+  standalone: false,
 })
 export class UserComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,7 +29,10 @@ export class UserComponent implements OnInit, OnDestroy {
   private getUsersSub!: Subscription;
   private removeUserSub!: Subscription;
 
-  constructor(private service: UserMasterService, private dialog: MatDialog) {}
+  constructor(
+    private service: UserMasterService,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -67,7 +71,7 @@ export class UserComponent implements OnInit, OnDestroy {
           alertify.success('Removed Successfully');
         });
       },
-      () => {}
+      () => {},
     );
   }
 

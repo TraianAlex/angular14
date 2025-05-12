@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-addcontact',
   templateUrl: './addcontact.component.html',
   styleUrls: ['./addcontact.component.css'],
+  standalone: false,
 })
 export class AddcontactComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}

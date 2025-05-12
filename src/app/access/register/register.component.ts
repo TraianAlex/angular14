@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  standalone: false,
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   reactiveform = new FormGroup({
@@ -17,12 +18,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
     password: new FormControl('', Validators.required),
     email: new FormControl(
       '',
-      Validators.compose([Validators.required, Validators.email])
+      Validators.compose([Validators.required, Validators.email]),
     ),
   });
   private saveUserSub!: Subscription;
 
-  constructor(private router: Router, private service: UserService) {}
+  constructor(
+    private router: Router,
+    private service: UserService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -41,7 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         .subscribe((item) => {
           if (item) {
             alertify.success(
-              'Registerted successfully please contact admin for activation'
+              'Registerted successfully please contact admin for activation',
             );
             this.redirectLogin();
           } else {
