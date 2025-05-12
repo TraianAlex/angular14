@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,10 +8,8 @@ import { RouterLink } from '@angular/router';
     imports: [RouterLink],
 })
 export class NavigationComponent implements OnInit {
-  @Input() isAdmin: boolean | undefined;
-  @Input() isMenuVisible: boolean = false;
-
-  constructor() {}
+  readonly isAdmin = input<boolean>();
+  readonly isMenuVisible = input<boolean>(false);
 
   ngOnInit(): void {}
 }
