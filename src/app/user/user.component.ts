@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,9 @@ import { ModalpopupComponent } from '../modal-popup/modalpopup.component';
   standalone: false,
 })
 export class UserComponent implements OnInit, OnDestroy {
+  private service = inject(UserMasterService);
+  private dialog = inject(MatDialog);
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource!: MatTableDataSource<UserModel>;
   displayedColumns: string[] = [
@@ -28,11 +31,6 @@ export class UserComponent implements OnInit, OnDestroy {
   ];
   private getUsersSub!: Subscription;
   private removeUserSub!: Subscription;
-
-  constructor(
-    private service: UserMasterService,
-    private dialog: MatDialog,
-  ) {}
 
   ngOnInit(): void {
     this.getAllUsers();

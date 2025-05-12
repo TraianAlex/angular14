@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false,
 })
 export class AddcontactComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     const routeid = this.route.snapshot.paramMap.get('id');

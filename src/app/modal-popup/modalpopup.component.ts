@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -14,6 +14,12 @@ import { UserMasterService } from '../services/user-master.service';
   standalone: false,
 })
 export class ModalpopupComponent implements OnInit, OnDestroy {
+  private service = inject(UserMasterService);
+  data = inject<{
+    id: number;
+}>(MAT_DIALOG_DATA);
+  private ref = inject<MatDialogRef<ModalpopupComponent>>(MatDialogRef);
+
   roles!: Roles[];
   updateform = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -23,12 +29,6 @@ export class ModalpopupComponent implements OnInit, OnDestroy {
   private saveUserSub!: Subscription;
   private getRolesSub!: Subscription;
   private getUserSub!: Subscription;
-
-  constructor(
-    private service: UserMasterService,
-    @Inject(MAT_DIALOG_DATA) public data: { id: number },
-    private ref: MatDialogRef<ModalpopupComponent>,
-  ) {}
 
   ngOnInit(): void {
     this.getAllRoles();

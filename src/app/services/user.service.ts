@@ -1,4 +1,4 @@
-import { inject, Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Buffer } from 'buffer';
@@ -14,12 +14,8 @@ import { UserModel } from '../model/UserModel';
   providedIn: 'root',
 })
 export class UserService {
+  private http = inject(HttpClient);
   private config: AppConfig = inject(APP_SERVICE_CONFIG);
-
-  constructor(
-    // @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
-    private http: HttpClient
-  ) {}
 
   proceedLogin(inputdata: NgForm): Observable<UserModel[]> {
     const { username } = inputdata.form.value;

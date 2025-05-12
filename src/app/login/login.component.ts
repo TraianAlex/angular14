@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,9 +16,10 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  private loginUserSub!: Subscription;
+  private userService = inject(UserService);
+  private route = inject(Router);
 
-  constructor(private userService: UserService, private route: Router) {}
+  private loginUserSub!: Subscription;
 
   ngOnInit(): void {
     localStorage.clear();

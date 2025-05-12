@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
@@ -13,6 +13,9 @@ import { UserService } from 'src/app/services/user.service';
   standalone: false,
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private service = inject(UserService);
+
   reactiveform = new FormGroup({
     name: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -22,11 +25,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     ),
   });
   private saveUserSub!: Subscription;
-
-  constructor(
-    private router: Router,
-    private service: UserService,
-  ) {}
 
   ngOnInit(): void {}
 

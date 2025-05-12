@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from './services/user.service';
@@ -10,13 +10,11 @@ import { UserService } from './services/user.service';
   standalone: false,
 })
 export class AppComponent implements DoCheck {
+  private route = inject(Router);
+  private service = inject(UserService);
+
   isMenuVisible = true;
   isAdmin = false;
-
-  constructor(
-    private route: Router,
-    private service: UserService,
-  ) {}
 
   ngDoCheck(): void {
     const currentroute = this.route.url;
