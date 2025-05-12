@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-contact',
-    template: `
+  selector: 'app-contact',
+  template: `
     <h2>contact</h2>
     <a routerLink="add">Add Contact</a>
     <br />
@@ -13,11 +13,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       <router-outlet></router-outlet>
     </div>
   `,
-    styleUrls: ['./contact.component.css'],
-    imports: [RouterLink, RouterOutlet],
+  styleUrls: ['./contact.component.css'],
+  imports: [RouterLink, RouterOutlet],
 })
-export class ContactComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class ContactComponent {}

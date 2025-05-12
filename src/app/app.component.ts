@@ -5,10 +5,10 @@ import { UserService } from './services/user.service';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    imports: [NavigationComponent, RouterOutlet],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  imports: [NavigationComponent, RouterOutlet],
 })
 export class AppComponent implements DoCheck {
   private route = inject(Router);

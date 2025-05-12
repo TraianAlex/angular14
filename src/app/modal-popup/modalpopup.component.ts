@@ -1,6 +1,15 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import * as alertify from 'alertifyjs';
 
@@ -14,27 +23,27 @@ import { MatButton } from '@angular/material/button';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
-    selector: 'app-modalpopup',
-    templateUrl: './modalpopup.component.html',
-    styleUrls: ['./modalpopup.component.css'],
-    imports: [
-        ReactiveFormsModule,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        MatSelect,
-        MatOption,
-        MatCheckbox,
-        MatButton,
-        MatDialogClose,
-        UpperCasePipe,
-    ],
+  selector: 'app-modalpopup',
+  templateUrl: './modalpopup.component.html',
+  styleUrls: ['./modalpopup.component.css'],
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatSelect,
+    MatOption,
+    MatCheckbox,
+    MatButton,
+    MatDialogClose,
+    UpperCasePipe,
+  ],
 })
 export class ModalpopupComponent implements OnInit, OnDestroy {
   private service = inject(UserMasterService);
   data = inject<{
     id: number;
-}>(MAT_DIALOG_DATA);
+  }>(MAT_DIALOG_DATA);
   private ref = inject<MatDialogRef<ModalpopupComponent>>(MatDialogRef);
 
   roles!: Roles[];

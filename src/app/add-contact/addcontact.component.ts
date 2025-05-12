@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-addcontact',
-    templateUrl: './addcontact.component.html',
-    styleUrls: ['./addcontact.component.css'],
+  selector: 'app-addcontact',
+  templateUrl: './addcontact.component.html',
+  styleUrls: ['./addcontact.component.css'],
 })
 export class AddcontactComponent implements OnInit {
   private route = inject(ActivatedRoute);

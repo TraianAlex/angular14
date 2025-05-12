@@ -1,9 +1,7 @@
 <h2 [ngStyle]="stylevalue">{{ headername | uppercase }}</h2>
 
 @if (salary > 0) {
-  <h2 [ngClass]="classname">
-    My salary is {{ salary | percent }}
-  </h2>
+  <h2 [ngClass]="classname">My salary is {{ salary | percent }}</h2>
 }
 <br />
 
@@ -15,7 +13,7 @@
   [disabled]="isdiabled"
   #txt
   (change)="functionclick(txt.value)"
-  />
+/>
 <br />
 <br />
 <input [(ngModel)]="headername" />

@@ -1,5 +1,10 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnDestroy, inject } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
 import { Subscription } from 'rxjs';
@@ -11,22 +16,22 @@ import { MatInput } from '@angular/material/input';
 import { MatButton, MatAnchor } from '@angular/material/button';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css'],
-    imports: [
-        MatCard,
-        MatCardTitle,
-        MatCardContent,
-        ReactiveFormsModule,
-        MatFormField,
-        MatLabel,
-        MatInput,
-        MatButton,
-        MatAnchor,
-    ],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
+  imports: [
+    MatCard,
+    MatCardTitle,
+    MatCardContent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatButton,
+    MatAnchor,
+  ],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnDestroy {
   private router = inject(Router);
   private service = inject(UserService);
 
@@ -39,8 +44,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     ),
   });
   private saveUserSub!: Subscription;
-
-  ngOnInit(): void {}
 
   redirectLogin() {
     this.router.navigate(['login']);
