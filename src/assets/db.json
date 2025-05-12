@@ -26,14 +26,14 @@
       "id": 2,
       "name": "Alex2",
       "password": "1111",
-      "email": "test@test.com",
+      "email": "test2@test.com",
       "role": "user",
       "isActive": true
     },
     {
       "name": "Alex3",
       "password": "1111",
-      "email": "test@test.com",
+      "email": "test3@test.com",
       "role": "staff",
       "isActive": true,
       "id": 3
