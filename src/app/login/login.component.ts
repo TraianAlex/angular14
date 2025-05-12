@@ -1,17 +1,30 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as alertify from 'alertifyjs';
 
-import { MaterialModule } from 'src/app/material.module';
 import { UserService } from '../services/user.service';
+import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatAnchor, MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MaterialModule, FormsModule],
+  imports: [
+    FormsModule,
+    MatCard,
+    MatCardTitle,
+    MatCardContent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatButton,
+    MatAnchor,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -37,14 +50,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       //   }
       // });
       const { password } = logindata.form.value;
-      this.loginUserSub = this.userService.proceedLogin(logindata).subscribe((user) => {
-        if (user.length && user[0].password === password) {
-          localStorage.setItem('role', user[0].role);
-          this.route.navigate(['/']);
-        } else {
-          alertify.error('Login Failed');
-        }
-      });
+      this.loginUserSub = this.userService
+        .proceedLogin(logindata)
+        .subscribe((user) => {
+          if (user.length && user[0].password === password) {
+            localStorage.setItem('role', user[0].role);
+            this.route.navigate(['/']);
+          } else {
+            alertify.error('Login Failed');
+          }
+        });
     }
   }
 

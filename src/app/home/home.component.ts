@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { NgStyle, NgClass, UpperCasePipe, PercentPipe } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  standalone: false,
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    imports: [
+        NgStyle,
+        NgClass,
+        ReactiveFormsModule,
+        FormsModule,
+        UpperCasePipe,
+        PercentPipe,
+    ],
 })
 export class HomeComponent implements OnInit {
   headername = 'Angular 14 ';

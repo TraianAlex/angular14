@@ -8,8 +8,8 @@ describe('StatusComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StatusComponent],
-    }).compileComponents();
+    imports: [StatusComponent],
+}).compileComponents();
 
     fixture = TestBed.createComponent(StatusComponent);
     component = fixture.componentInstance;
