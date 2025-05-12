@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, viewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {
   MatTableDataSource,
@@ -45,7 +45,8 @@ export class UserComponent implements OnInit, OnDestroy {
   private service = inject(UserMasterService);
   private dialog = inject(MatDialog);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  readonly paginator = viewChild.required(MatPaginator);
+
   dataSource!: MatTableDataSource<UserModel>;
   displayedColumns: string[] = [
     'id',
@@ -65,7 +66,7 @@ export class UserComponent implements OnInit, OnDestroy {
   getAllUsers() {
     this.getUsersSub = this.service.getAllUsers().subscribe((users) => {
       this.dataSource = new MatTableDataSource<UserModel>(users);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator();
     });
   }
 
