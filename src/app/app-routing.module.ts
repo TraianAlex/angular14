@@ -4,23 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { RoleGuard } from './guard/role.guard';
 
-import { HomeComponent } from './home/home.component';
-import { StatusComponent } from './status/status.component';
-import { UserComponent } from './user/user.component';
-import { AboutComponent } from './about/about.component';
-import { AddcontactComponent } from './add-contact/addcontact.component';
-import { ContactComponent } from './contact/contact.component';
-
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
-  { path: 'user', component: UserComponent, canActivate: [RoleGuard] },
+  { path: '', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent), canActivate: [AuthGuard] },
+  { path: 'about', loadComponent: () => import('./about/about.component').then(m => m.AboutComponent), canActivate: [AuthGuard] },
+  { path: 'user', loadComponent: () => import('./user/user.component').then(m => m.UserComponent), canActivate: [RoleGuard] },
   {
     path: 'contact',
-    component: ContactComponent,
+    loadComponent: () => import('./contact/contact.component').then(m => m.ContactComponent),
     children: [
-      { path: 'add', component: AddcontactComponent },
-      { path: 'edit/:id', component: AddcontactComponent },
+      { path: 'add', loadComponent: () => import('./add-contact/addcontact.component').then(m => m.AddcontactComponent) },
+      { path: 'edit/:id', loadComponent: () => import('./add-contact/addcontact.component').then(m => m.AddcontactComponent) },
     ],
     canActivate: [AuthGuard],
   },
@@ -34,7 +27,7 @@ const routes: Routes = [
     loadComponent: () =>
       import('./login/login.component').then((opt) => opt.LoginComponent),
   },
-  { path: '**', component: StatusComponent },
+  { path: '**', loadComponent: () => import('./status/status.component').then(m => m.StatusComponent) },
 ];
 
 @NgModule({

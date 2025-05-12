@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
 
-const routes: Routes = [{ path: 'register', component: RegisterComponent }];
+const routes: Routes = [{ path: 'register', loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent) }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
