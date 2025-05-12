@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, MaterialModule, FormsModule],
+  imports: [MaterialModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })

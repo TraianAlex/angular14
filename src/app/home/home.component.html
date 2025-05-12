@@ -1,8 +1,10 @@
 <h2 [ngStyle]="stylevalue">{{ headername | uppercase }}</h2>
 
-<h2 *ngIf="salary > 0" [ngClass]="classname">
-  My salary is {{ salary | percent }}
-</h2>
+@if (salary > 0) {
+  <h2 [ngClass]="classname">
+    My salary is {{ salary | percent }}
+  </h2>
+}
 <br />
 
 <button (click)="functionclick('click here')">Click Me</button>
@@ -13,11 +15,13 @@
   [disabled]="isdiabled"
   #txt
   (change)="functionclick(txt.value)"
-/>
+  />
 <br />
 <br />
 <input [(ngModel)]="headername" />
 
 <ul>
-  <li *ngFor="let item of colors">{{ item }}</li>
+  @for (item of colors; track item) {
+    <li>{{ item }}</li>
+  }
 </ul>
